@@ -1,6 +1,3 @@
-/*---------------------------------------------------------
- * Copyright (C) Microsoft Corporation. All rights reserved.
- *--------------------------------------------------------*/
 'use strict';
 
 const Generator = require('yeoman-generator');
@@ -10,36 +7,27 @@ const path = require('path');
 const env = require('./env');
 const which = require('which');
 
-const colortheme = require('./generate-colortheme');
 const commandjs = require('./generate-command-js');
 const commandts = require('./generate-command-ts');
-const commandweb = require('./generate-command-web');
-const extensionpack = require('./generate-extensionpack');
-const keymap = require('./generate-keymap');
-const language = require('./generate-language');
-const localization = require('./generate-localization');
-const notebook = require('./generate-notebook-renderer');
-const snippets = require('./generate-snippets');
 
 const extensionGenerators = [
-    commandts, commandjs, colortheme, language, snippets, keymap, extensionpack, localization,
-    commandweb, notebook
+    commandts, commandjs
 ]
 
 module.exports = class extends Generator {
 
     constructor(args, opts) {
         super(args, opts);
-        this.description = 'Generates a Visual Studio Code extension ready for development.';
+        this.description = 'Generates a Flashpoint Launcher extension ready for development.';
 
         this.argument('destination', { type: String, required: false, description: `\n    The folder to create the extension in, absolute or relative to the current working directory.\n    Use '.' for the current folder. If not provided, defaults to a folder with the extension display name.\n  ` })
 
-        this.option('insiders', { type: Boolean, alias: 'i', description: 'Show the insiders options for the generator' });
+        this.option('insiders', { type: Boolean, alias: 'i', description: 'Show the insiders options for the generator', hide: true });
         this.option('quick', { type: Boolean, alias: 'q', description: 'Quick mode, skip all optional prompts and use defaults' });
-        this.option('open', { type: Boolean, alias: 'o', description: 'Open the generated extension in Visual Studio Code' });
-        this.option('openInInsiders', { type: Boolean, alias: 'O', description: 'Open the generated extension in Visual Studio Code Insiders' });
+        this.option('open', { type: Boolean, alias: 'o', description: 'Open the generated extension in Visual Studio Code', hide: true });
+        this.option('openInInsiders', { type: Boolean, alias: 'O', description: 'Open the generated extension in Visual Studio Code Insiders', hide: true });
 
-        this.option('extensionType', { type: String, alias: 't', description: extensionGenerators.slice(0, 6).map(e => e.aliases[0]).join(', ') + '...' });
+        this.option('extensionType', { type: String, alias: 't', description: extensionGenerators.map(e => e.aliases[0]).join(', ') + '...' });
         this.option('extensionDisplayName', { type: String, alias: 'n', description: 'Display name of the extension' });
         this.option('extensionId', { type: String, description: 'Id of the extension' });
         this.option('extensionDescription', { type: String, description: 'Description of the extension' });
@@ -48,8 +36,8 @@ module.exports = class extends Generator {
         this.option('webpack', { type: Boolean, description: `Bundle the extension with webpack` });
         this.option('gitInit', { type: Boolean, description: `Initialize a git repo` });
 
-        this.option('snippetFolder', { type: String, description: `Snippet folder location` });
-        this.option('snippetLanguage', { type: String, description: `Snippet language` });
+        this.option('snippetFolder', { type: String, description: `Snippet folder location`, hide: true });
+        this.option('snippetLanguage', { type: String, description: `Snippet language`, hide: true });
 
         this.extensionConfig = Object.create(null);
         this.extensionConfig.installDependencies = false;
@@ -67,7 +55,7 @@ module.exports = class extends Generator {
 
         // Welcome
         if (!this.extensionConfig.insiders) {
-            this.log(yosay('Welcome to the Visual Studio Code Extension generator!'));
+            this.log(yosay('Welcome to the Flashpoint Launcher Extension generator!'));
         } else {
             this.log(yosay('Welcome to the Visual Studio Code Insiders Extension generator!'));
         }
@@ -88,7 +76,6 @@ module.exports = class extends Generator {
             }
             return `${JSON.stringify(name)}: ${JSON.stringify(version)}`;
         };
-        this.extensionConfig.vsCodeEngine = await env.getLatestVSCodeVersion();
     }
 
     async prompting() {

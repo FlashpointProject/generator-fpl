@@ -1,7 +1,3 @@
-/*---------------------------------------------------------
- * Copyright (C) Microsoft Corporation. All rights reserved.
- *--------------------------------------------------------*/
-
 const chalk = require("chalk");
 const prompts = require("./prompts");
 
@@ -29,27 +25,19 @@ module.exports = {
      */
     writing: (generator, extensionConfig) => {
         if (extensionConfig.webpack) {
-            generator.fs.copy(generator.templatePath('vscode-webpack/vscode'), generator.destinationPath('.vscode'));
             generator.fs.copyTpl(generator.templatePath('vscode-webpack/package.json'), generator.destinationPath('package.json'), extensionConfig);
             generator.fs.copyTpl(generator.templatePath('vscode-webpack/tsconfig.json'), generator.destinationPath('tsconfig.json'), extensionConfig);
-            generator.fs.copyTpl(generator.templatePath('vscode-webpack/vscodeignore'), generator.destinationPath('.vscodeignore'), extensionConfig);
             generator.fs.copyTpl(generator.templatePath('vscode-webpack/webpack.config.js'), generator.destinationPath('webpack.config.js'), extensionConfig);
-            generator.fs.copyTpl(generator.templatePath('vscode-webpack/vsc-extension-quickstart.md'), generator.destinationPath('vsc-extension-quickstart.md'), extensionConfig);
         } else {
-            generator.fs.copy(generator.templatePath('vscode'), generator.destinationPath('.vscode'));
             generator.fs.copyTpl(generator.templatePath('package.json'), generator.destinationPath('package.json'), extensionConfig);
             generator.fs.copyTpl(generator.templatePath('tsconfig.json'), generator.destinationPath('tsconfig.json'), extensionConfig);
-            generator.fs.copyTpl(generator.templatePath('vscodeignore'), generator.destinationPath('.vscodeignore'), extensionConfig);
-            generator.fs.copyTpl(generator.templatePath('vsc-extension-quickstart.md'), generator.destinationPath('vsc-extension-quickstart.md'), extensionConfig);
         }
 
         if (extensionConfig.gitInit) {
             generator.fs.copy(generator.templatePath('gitignore'), generator.destinationPath('.gitignore'));
         }
         generator.fs.copyTpl(generator.templatePath('README.md'), generator.destinationPath('README.md'), extensionConfig);
-        generator.fs.copyTpl(generator.templatePath('CHANGELOG.md'), generator.destinationPath('CHANGELOG.md'), extensionConfig);
         generator.fs.copyTpl(generator.templatePath('src/extension.ts'), generator.destinationPath('src/extension.ts'), extensionConfig);
-        generator.fs.copy(generator.templatePath('src/test'), generator.destinationPath('src/test'));
         generator.fs.copy(generator.templatePath('.eslintrc.json'), generator.destinationPath('.eslintrc.json'));
 
         if (extensionConfig.pkgManager === 'yarn') {

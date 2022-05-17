@@ -1,31 +1,28 @@
 {
-  "name": "generator-code",
+  "name": "generator-fpl",
   "version": "1.6.10",
-  "description": "Yeoman generator for Visual Studio Code Extensions",
+  "description": "Yeoman generator for Flashpoint Launcher Extensions",
   "keywords": [
     "yeoman-generator",
-    "vscode",
-    "visual studio",
-    "visual studio code",
-    "vs code",
+    "flashpoint launcher",
     "extensions"
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/Microsoft/vscode-generator-code.git"
+    "url": "https://github.com/FlashpointProject/generator-fpl.git"
   },
   "bugs": {
-    "url": "https://github.com/Microsoft/vscode-generator-code/issues"
+    "url": "https://github.com/FlashpointProject/generator-fpl/issues"
   },
   "main": "./generators/app/index.js",
-  "homepage": "http://code.visualstudio.com",
+  "homepage": "https://bluemaxima.org/flashpoint/",
   "license": "MIT",
   "author": {
-    "name": "VS Code Team",
-    "url": "https://github.com/Microsoft"
+    "name": "Flashpoint Project",
+    "url": "https://github.com/FlashpointProject"
   },
   "engines": {
-    "node": ">=10.0.0"
+    "node": ">=16.0.0"
   },
   "scripts": {
     "test": "mocha",

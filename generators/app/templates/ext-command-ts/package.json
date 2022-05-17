@@ -3,46 +3,30 @@
 	"displayName": <%- JSON.stringify(displayName) %>,
 	"description": <%- JSON.stringify(description) %>,
 	"version": "0.0.1",
-	"engines": {
-		"vscode": <%- JSON.stringify(vsCodeEngine) %>
-	},
-	"categories": [
-		"Other"
-	],
-	"activationEvents": [
-        <%- JSON.stringify(`onCommand:${name}.helloWorld`) %>
-	],
-	"main": "./out/extension.js",<% if (insiders) { %>
-	"enabledApiProposals": [],<% } %>
+	"main": "./out/extension.js",
 	"contributes": {
-		"commands": [
+		"devScripts": [
 			{
-				"command": <%- JSON.stringify(`${name}.helloWorld`) %>,
-				"title": "Hello World"
-			}
+        "name": <%- JSON.stringify(`Hello World (${name})`) %>,
+        "description": "Print Hello World Message",
+        "command": <%- JSON.stringify(`${name}.hello-world`) %>
+      }
 		]
 	},
 	"scripts": {
-		"vscode:prepublish": "<%= pkgManager %> run compile",
-		"compile": "tsc -p ./",
+		"build": "tsc -p ./",
 		"watch": "tsc -watch -p ./",
-		"pretest": "<%= pkgManager %> run compile && <%= pkgManager %> run lint",
-		"lint": "eslint src --ext ts",
-		"test": "node ./out/test/runTest.js"<% if (insiders) { %>,
-		"update-proposed-api": "vscode-dts dev"<% } %>
+		"lint": "eslint src --ext ts"
 	},
 	"devDependencies": {
-		<%- dep("@types/vscode") %>,
-		<%- dep("@types/glob") %>,
-		<%- dep("@types/mocha") %>,
+		<%- dep("@types/flashpoint-launcher") %>,
 		<%- dep("@types/node") %>,
 		<%- dep("@typescript-eslint/eslint-plugin") %>,
 		<%- dep("@typescript-eslint/parser") %>,
 		<%- dep("eslint") %>,
-		<%- dep("glob") %>,
-		<%- dep("mocha") %>,
-		<%- dep("typescript") %>,
-		<%- dep("@vscode/test-electron") %><% if (insiders) { %>,
-		<%- dep("vscode-dts") %><% } %>
+		<%- dep("gulp") %>,
+		<%- dep("gulp-zip") %>,
+		<%- dep("merge-stream") %>,
+		<%- dep("typescript") %>
 	}
 }

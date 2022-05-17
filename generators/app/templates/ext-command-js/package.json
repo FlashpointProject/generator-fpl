@@ -3,22 +3,15 @@
 	"displayName": <%- JSON.stringify(displayName) %>,
 	"description": <%- JSON.stringify(description) %>,
 	"version": "0.0.1",
-	"engines": {
-		"vscode": <%- JSON.stringify(vsCodeEngine) %>
-	},
-	"categories": [
-		"Other"
-	],
-	"activationEvents": [
-        <%- JSON.stringify(`onCommand:${name}.helloWorld`) %>
-	],
 	"main": "./extension.js",
 	"contributes": {
-		"commands": [{
-            "command": <%- JSON.stringify(`${name}.helloWorld`) %>,
-            "title": "Hello World"
-
-		}]
+		"devScripts": [
+			{
+        "name": <%- JSON.stringify(`Hello World (${name})`) %>,
+        "description": "Print Hello World Message",
+        "command": <%- JSON.stringify(`${name}.hello-world`) %>
+      }
+		]
 	},
 	"scripts": {
 		"lint": "eslint .",
@@ -26,15 +19,15 @@
 		"test": "node ./test/runTest.js"
 	},
 	"devDependencies": {
-        <%- dep("@types/vscode") %>,
-        <%- dep("@types/glob") %>,
-        <%- dep("@types/mocha") %>,
-        <%- dep("@types/node") %>,
-        <%- dep("eslint") %>,
-        <%- dep("glob") %>,
-        <%- dep("mocha") %>,
-        <%- dep("typescript") %>,
-        <%- dep("@vscode/test-electron") %>
+		<%- dep("@types/flashpoint-launcher") %>,
+		<%- dep("@types/node") %>,
+		<%- dep("@typescript-eslint/eslint-plugin") %>,
+		<%- dep("@typescript-eslint/parser") %>,
+		<%- dep("eslint") %>,
+		<%- dep("gulp") %>,
+		<%- dep("gulp-zip") %>,
+		<%- dep("merge-stream") %>,
+		<%- dep("typescript") %>
     }
 
 }

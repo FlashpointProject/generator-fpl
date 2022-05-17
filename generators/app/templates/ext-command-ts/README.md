@@ -1,6 +1,6 @@
 # <%= name %> README
 
-This is the README for your extension "<%= name %>". After writing up a brief description, we recommend including the following sections.
+This is the README for your extension "<%= name %>". After writing up a brief description, Flashpoint recommends including the following sections.
 
 ## Features
 
@@ -10,22 +10,20 @@ For example if there is an image subfolder under your extension project workspac
 
 \!\[feature X\]\(images/feature-x.png\)
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
-
 ## Requirements
 
 If you have any requirements or dependencies, add a section describing those and how to install and configure them.
 
 ## Extension Settings
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
+Include if your extension adds any Config page settings through the `contributes.configuration` extension point.
 
-For example:
+## Icon
 
-This extension contributes the following settings:
+Add a Icon to your extension, this will be shown on the Config page.
 
-* `myExtension.enable`: enable/disable this extension
-* `myExtension.thing`: set to `blah` to do something
+Add this to your package.json and move your icon to icon.png, or change the path to another image in your extension folder.
+* `"icon": "./icon.png"`
 
 ## Known Issues
 
@@ -48,11 +46,6 @@ Fixed issue #.
 Added features X, Y, and Z.
 
 -----------------------------------------------------------------------------------------------------------
-## Following extension guidelines
-
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
-
-* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
 
 ## Working with Markdown
 

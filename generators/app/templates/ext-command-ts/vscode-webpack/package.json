@@ -3,52 +3,34 @@
 	"displayName": <%- JSON.stringify(displayName) %>,
 	"description": <%- JSON.stringify(description) %>,
 	"version": "0.0.1",
-	"engines": {
-		"vscode": <%- JSON.stringify(vsCodeEngine) %>
-	},
-	"categories": [
-		"Other"
-	],
-	"activationEvents": [
-        <%- JSON.stringify(`onCommand:${name}.helloWorld`) %>
-	],
-	"main": "./dist/extension.js",<% if (insiders) { %>
-	"enabledApiProposals": [],<% } %>
+	"main": "./dist/extension.js",
 	"contributes": {
-		"commands": [
+		"devScripts": [
 			{
-				"command": <%- JSON.stringify(`${name}.helloWorld`) %>,
-				"title": "Hello World"
-			}
+        "name": <%- JSON.stringify(`Hello World (${name})`) %>,
+        "description": "Print Hello World Message",
+        "command": <%- JSON.stringify(`${name}.hello-world`) %>
+      }
 		]
 	},
 	"scripts": {
-		"vscode:prepublish": "<%= pkgManager %> run package",
-		"compile": "webpack",
+		"build": "webpack",
 		"watch": "webpack --watch",
-		"package": "webpack --mode production --devtool hidden-source-map",
-		"compile-tests": "tsc -p . --outDir out",
-		"watch-tests": "tsc -p . -w --outDir out",
-		"pretest": "<%= pkgManager %> run compile-tests && <%= pkgManager %> run compile && <%= pkgManager %> run lint",
-		"lint": "eslint src --ext ts",
-		"test": "node ./out/test/runTest.js"<% if (insiders) { %>,
-		"update-proposed-api": "vscode-dts dev"<% } %>
+		"package": "gulp",
+		"lint": "eslint src --ext ts"
 	},
 	"devDependencies": {
-		<%- dep("@types/vscode") %>,
-		<%- dep("@types/glob") %>,
-		<%- dep("@types/mocha") %>,
+		<%- dep("@types/flashpoint-launcher") %>,
 		<%- dep("@types/node") %>,
 		<%- dep("@typescript-eslint/eslint-plugin") %>,
 		<%- dep("@typescript-eslint/parser") %>,
 		<%- dep("eslint") %>,
-		<%- dep("glob") %>,
-		<%- dep("mocha") %>,
+		<%- dep("gulp") %>,
+		<%- dep("gulp-zip") %>,
+		<%- dep("merge-stream") %>,
 		<%- dep("typescript") %>,
 		<%- dep("ts-loader") %>,
 		<%- dep("webpack") %>,
-		<%- dep("webpack-cli") %>,
-		<%- dep("@vscode/test-electron") %><% if (insiders) { %>,
-		<%- dep("vscode-dts") %><% } %>
+		<%- dep("webpack-cli") %>
 	}
 }

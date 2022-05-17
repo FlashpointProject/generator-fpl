@@ -1,7 +1,3 @@
-/*---------------------------------------------------------
- * Copyright (C) Microsoft Corporation. All rights reserved.
- *--------------------------------------------------------*/
-
 const prompts = require("./prompts");
 
 module.exports = {
@@ -36,18 +32,11 @@ module.exports = {
      * @param {Object} extensionConfig
      */
     writing: (generator, extensionConfig) => {
-        generator.fs.copy(generator.templatePath('vscode'), generator.destinationPath('.vscode'));
-        generator.fs.copy(generator.templatePath('test'), generator.destinationPath('test'));
-
-        generator.fs.copy(generator.templatePath('vscodeignore'), generator.destinationPath('.vscodeignore'));
-
         if (extensionConfig.gitInit) {
             generator.fs.copy(generator.templatePath('gitignore'), generator.destinationPath('.gitignore'));
         }
 
         generator.fs.copyTpl(generator.templatePath('README.md'), generator.destinationPath('README.md'), extensionConfig);
-        generator.fs.copyTpl(generator.templatePath('CHANGELOG.md'), generator.destinationPath('CHANGELOG.md'), extensionConfig);
-        generator.fs.copyTpl(generator.templatePath('vsc-extension-quickstart.md'), generator.destinationPath('vsc-extension-quickstart.md'), extensionConfig);
         generator.fs.copyTpl(generator.templatePath('jsconfig.json'), generator.destinationPath('jsconfig.json'), extensionConfig);
 
         generator.fs.copyTpl(generator.templatePath('extension.js'), generator.destinationPath('extension.js'), extensionConfig);

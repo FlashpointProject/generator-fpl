@@ -89,7 +89,7 @@ docker run -v $(pwd):/usr/src/app generator-fpl
 
 ## Local development
 
-After making necessary changes, run `npm link` before running `yo code` to
+After making necessary changes, run `npm link` before running `yo fpl` to
 test the local version.
 
 You can learn more about Yeoman generator development on its

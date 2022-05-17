@@ -111,6 +111,10 @@ describe('test code generator', function () {
                 try {
                     assertFiles(runResult, 'testCom', ['src/extension.ts', 'tsconfig.json']);
 
+                    // Check gulpfile.js substitutions
+                    runResult.assertFileContent('testCom/gulpfile.js', /zip\('testCom.fplx'\)/gm);
+                    runResult.assertFileContent('testCom/gulpfile.js', /gulp\.dest\('package\/testCom\/out'\)/gm);
+
                     runResult.assertJsonFileContent('testCom/package.json', expectedPackageJSON);
                     done();
                 } catch (e) {
@@ -177,7 +181,7 @@ describe('test code generator', function () {
                     }
                 };
                 try {
-                    assertFiles(runResult, 'testCom', ['src/extension.ts', 'tsconfig.json', '.eslintrc.json']);
+                    assertFiles(runResult, 'testCom', ['src/extension.ts', 'tsconfig.json', '.eslintrc.json', 'gulpfile.js']);
 
                     runResult.assertJsonFileContent('testCom/package.json', expectedPackageJSON);
 
@@ -243,7 +247,7 @@ describe('test code generator', function () {
                 try {
 
 
-                    assertFiles(runResult, 'testCom', ['src/extension.ts', 'tsconfig.json']);
+                    assertFiles(runResult, 'testCom', ['src/extension.ts', 'tsconfig.json', 'gulpfile.js']);
 
                     runResult.assertJsonFileContent('testCom/package.json', expectedPackageJSON);
 
@@ -296,7 +300,7 @@ describe('test code generator', function () {
                     }
                 };
                 try {
-                    assertFiles(runResult, 'testCom', ['extension.js', 'jsconfig.json']);
+                    assertFiles(runResult, 'testCom', ['extension.js', 'jsconfig.json', 'gulpfile.js']);
 
                     runResult.assertJsonFileContent('testCom/package.json', expectedPackageJSON);
 

@@ -38,6 +38,7 @@ module.exports = {
         }
         generator.fs.copyTpl(generator.templatePath('README.md'), generator.destinationPath('README.md'), extensionConfig);
         generator.fs.copyTpl(generator.templatePath('src/extension.ts'), generator.destinationPath('src/extension.ts'), extensionConfig);
+        generator.fs.copyTpl(generator.templatePath('gulpfile.js'), generator.destinationPath('gulpfile.js'), extensionConfig);
         generator.fs.copy(generator.templatePath('.eslintrc.json'), generator.destinationPath('.eslintrc.json'));
 
         if (extensionConfig.pkgManager === 'yarn') {

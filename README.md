@@ -97,6 +97,7 @@ You can learn more about Yeoman generator development on its
 
 ## History
 
+* 1.6.11 Added Gulpfile for extension packaging script
 * 1.6.10 Added Templates: Command TS, Command TS w/ Webpack, Command JS
 
 ## License

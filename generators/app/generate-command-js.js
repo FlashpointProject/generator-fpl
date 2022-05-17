@@ -42,6 +42,7 @@ module.exports = {
         generator.fs.copyTpl(generator.templatePath('extension.js'), generator.destinationPath('extension.js'), extensionConfig);
         generator.fs.copyTpl(generator.templatePath('package.json'), generator.destinationPath('package.json'), extensionConfig);
         generator.fs.copyTpl(generator.templatePath('.eslintrc.json'), generator.destinationPath('.eslintrc.json'), extensionConfig);
+        generator.fs.copyTpl(generator.templatePath('gulpfile.js'), generator.destinationPath('gulpfile.js'), extensionConfig);
 
         if (extensionConfig.pkgManager === 'yarn') {
             generator.fs.copyTpl(generator.templatePath('.yarnrc'), generator.destinationPath('.yarnrc'), extensionConfig);
